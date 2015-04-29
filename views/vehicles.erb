@@ -1,0 +1,16 @@
+<h1>Here is a list of vehicles:</h1>
+
+<% @vehicles.each() do |vehicle| %>
+<ul>
+  <li>Make: <%= vehicle.make() %></li>
+  <li>Model: <%= vehicle.model() %></li>
+  <li>Year: <%= vehicle.year() %></li>
+</ul>
+
+<% end %>
+
+<br>
+<br>
+<form action="/clear_list" method="post">
+  <button id="clear_list" name="clear_list" class="btn-danger btn">Clear your vehicle list</button>
+</form>
