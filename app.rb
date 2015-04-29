@@ -32,7 +32,6 @@ get('/vehicle/:key') do
   erb(:vehicle)
 end
 
-#might be post?
 get ('/add_vehicle') do
   erb (:add_vehicle)
 end
