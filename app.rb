@@ -13,7 +13,7 @@ post('/clear_list') do
 end
 
 get ('/vehicles') do
-  @vehicles
+  @vehicles = Vehicle.all()
   erb (:vehicles)
 end
 
@@ -25,6 +25,11 @@ post('/vehicles') do
   new_vehicle.save()
   @vehicles = Vehicle.all()
   erb(:vehicles)
+end
+
+get('/vehicle/:key') do
+  @vehicle = Vehicle.find(params.fetch('key'))
+  erb(:vehicle)
 end
 
 #might be post?
