@@ -1,5 +1,5 @@
 <h1>Add a new Vehicle to the list!</h1>
-<form action="/vehicles" method="post">
+<form action="/dealership/<%= @id %>/vehicles" method="post">
   <div class="form-group">
     <label for="add_make">Please enter the Make of the vehicle</label>
     <input type="text" id="add_make" name="add_make" class = "form-control">

@@ -1,4 +1,4 @@
 <h1>Welcome to <%= @dealership.name() %></h1>
-<a id = 'vehicle_list' href="/vehicles">List vehicles</a>
+<a id = 'vehicle_list' href="/dealership/<%= @dealership.id() %>/vehicles">List vehicles</a>
 <br>
-<a href="/vehicle/new">Add a vehicle</a>
+<a href="/dealership/<%= @dealership.id() %>/vehicle/new">Add a vehicle</a>

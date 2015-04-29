@@ -44,4 +44,8 @@ class Dealership
   define_method(:add_vehicle) do |vehicle|
     @cars.push(vehicle)
   end
+
+  define_method(:clear_cars) do
+    @cars = []
+  end
 end

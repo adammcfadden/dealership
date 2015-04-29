@@ -9,34 +9,12 @@ get ('/') do
   erb (:index)
 end
 
-post('/clear_list') do
-  @vehicles = Vehicle.clear()
+post('/clear_list/:id') do
+  dealership_specific = Dealership.find(params.fetch('id').to_i())
+  @vehicles = dealership_specific.clear_cars()
   erb(:vehicles)
 end
 
-get ('/vehicles') do
-  @vehicles = Vehicle.all()
-  erb (:vehicles)
-end
-
-post('/vehicles') do
-  make = params.fetch('add_make')
-  model = params.fetch('add_model')
-  year = params.fetch('add_year')
-  new_vehicle = Vehicle.new(make, model, year)
-  new_vehicle.save()
-  @vehicles = Vehicle.all()
-  erb(:vehicles)
-end
-
-get('/vehicle/:key') do
-  @vehicle = Vehicle.find(params.fetch('key'))
-  erb(:vehicle)
-end
-
-get ('/add_vehicle') do
-  erb (:add_vehicle)
-end
 
 get ('/dealerships') do
   @dealerships = Dealership.all()
@@ -60,3 +38,30 @@ get('/dealerships/:id') do
   @dealership = Dealership.find(params.fetch('id').to_i())
   erb(:dealership)
 end
+
+get('/dealership/:id/vehicles') do
+  @id = params.fetch('id')
+  dealership = Dealership.find(@id.to_i())
+  @vehicles = dealership.cars()
+  erb(:vehicles)
+end
+
+get('/dealership/:id/vehicle/new') do
+  @id = params.fetch('id')
+  erb(:add_vehicle)
+end
+
+post('/dealership/:id/vehicles') do
+  @id = params.fetch('id')
+  dealership = Dealership.find(@id.to_i())
+  make = params.fetch('add_make')
+  model = params.fetch('add_model')
+  year = params.fetch('add_year')
+  new_car = Vehicle.new(make, model, year)
+  new_car.save()
+  dealership.add_vehicle(new_car)
+  @vehicles = dealership.cars()
+  erb(:vehicles)
+end
+
+#need /dealership/:dealer_id/vehicles/:car_id route to view car info
