@@ -64,4 +64,7 @@ post('/dealership/:id/vehicles') do
   erb(:vehicles)
 end
 
-#need /dealership/:dealer_id/vehicles/:car_id route to view car info
+get('/vehicle/:id') do
+  @vehicle = Vehicle.find(params.fetch('id').to_i())
+  erb(:vehicle)
+end

@@ -1,15 +1,9 @@
 <h1>Here is a list of vehicles:</h1>
-
-<% @vehicles.each() do |vehicle| %>
-<a href="/vehicle/<%= vehicle.id() %>">Vehicle <%=vehicle.id() %></a>
 <ul>
-  <li>Make: <%= vehicle.make() %></li>
-  <li>Model: <%= vehicle.model() %></li>
-  <li>Year: <%= vehicle.year() %></li>
+  <% @vehicles.each() do |vehicle| %>
+  <li><a href="/vehicle/<%= vehicle.id() %>"><%=vehicle.year() %> <%=vehicle.make() %> <%=vehicle.model() %></a></li>
+  <% end %>
 </ul>
-
-<% end %>
-
 <br>
 <br>
 <form action="/clear_list/<%= @id %>" method="post">
